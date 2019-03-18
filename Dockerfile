@@ -8,6 +8,9 @@ LABEL maitainer="songyunlu <gn00023040@gmail.com>" \
       description="Netflix's Papermill with Python3." \
       version="0.19.0-py3-ubuntu"
 
+ENV LC_ALL=C.UTF-8
+ENV LANG=C.UTF-8
+
 RUN set -xe \
     && apt-get update && apt-get upgrade -y \
     && apt-get install -y software-properties-common \
@@ -27,8 +30,8 @@ RUN set -xe \
     && python3 -m pip install papermill gcloud \
     && python3 -m pip install ipykernel \
     && python3 -m ipykernel install \
-    && export LC_ALL=C.UTF-8 \
-    && export LANG=C.UTF-8 \
-    && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* ~/.cache
+    && apt-get remove -y curl \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* ~/.cache
 
 ENTRYPOINT ["dumb-init", "--", "papermill"]
