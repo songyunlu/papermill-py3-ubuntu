@@ -16,9 +16,7 @@ RUN set -xe \
     && apt-get install -y software-properties-common \
     && add-apt-repository -y ppa:deadsnakes/ppa \
     && apt-get update \
-    && apt-get install -y python3.6 \
-    && apt-get install -y python3.6-dev \
-    && apt-get install -y curl \
+    && apt-get install -y python3.6 python3.6-dev curl libgomp1 \
     && curl -so /tmp/get-pip.py https://bootstrap.pypa.io/get-pip.py \
     && python3.6 /tmp/get-pip.py \
     && ln -sf /usr/bin/python3.6 /usr/bin/python3 \
